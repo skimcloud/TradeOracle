@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np  # Import numpy for NaN handling
 
 # Read the orders data
-orders_df = pd.read_csv('maria_orders_processed.csv')
+orders_df = pd.read_csv('new_maria_orders_processed.csv')
 
 # Extract unique tickers (excluding NaN values)
 unique_tickers = orders_df['ticker'].dropna().unique()
@@ -50,4 +50,4 @@ for ticker in unique_tickers:
                 orders_df.at[index, f'volume_{matching_day}'] = row['volume']
 
 # Write the updated dataframe back to a new CSV or the same file
-orders_df.to_csv('updated_maria_orders_processed.csv', index=False)
+orders_df.to_csv('newer_updated_maria_orders_processed.csv', index=False)
