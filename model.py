@@ -1,8 +1,9 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.tree import DecisionTreeClassifier, plot_tree
+from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
+from xgboost import plot_tree
 import seaborn as sns
 
 # Load the dataset
@@ -13,10 +14,10 @@ features = data.drop('success', axis=1)
 target = data['success']
 
 # Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.5, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)
 
-# Initialize the Decision Tree Classifier with hyperparameters
-clf = DecisionTreeClassifier(random_state=42, max_depth=5, min_samples_split=5, min_samples_leaf=2)
+# Initialize the XGBoost Classifier with hyperparameters
+clf = XGBClassifier(random_state=42, max_depth=5, min_child_weight=1, learning_rate=0.1, n_estimators=100)
 
 # Fit the classifier to the training data
 clf.fit(X_train, y_train)
@@ -33,11 +34,6 @@ predictions = clf.predict(X_test)
 accuracy = accuracy_score(y_test, predictions)
 print(f"Accuracy: {accuracy * 100:.2f}%")
 
-# Visualize the Decision Tree
-plt.figure(figsize=(12, 8))
-plot_tree(clf, feature_names=features.columns, filled=True, rounded=True)
-plt.show()
-
 # Get feature importances
 feature_importances = clf.feature_importances_
 
@@ -51,3 +47,8 @@ feature_importance_df = feature_importance_df.sort_values(by='Importance', ascen
 top_n = 10  # Change this value to print more or fewer top features
 print(f"Top {top_n} Important Features:")
 print(feature_importance_df.head(top_n))
+
+# Visualize the XGBoost Decision Tree
+plt.figure(figsize=(12, 8))
+plot_tree(clf, num_trees=0, ax=plt.gca())
+plt.show()
