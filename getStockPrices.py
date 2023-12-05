@@ -19,9 +19,9 @@ def fetch_ticker_data(symbol, api_key):
         print(f"Error fetching data for {symbol}: {str(e)}")
 
 # List of tickers
-symbols = ['CAH', 'CVX', 'Z', 'FSLR', 'MCD', 'WEAT', 'ONON', 'MRVL', 'BOX', 'PLTR',
-           'ENPH', 'DDOG', 'TSM', 'TOST', 'EWZ', 'CUBE', 'TGT', 'GPS', 'DIS', 'AXP',
-           'ETSY', 'CRM', 'FIS', 'FCX', 'ADI', 'RUN']
+symbols = ['HLT', 'LULU', 'LYFT', 'TPR', 'CVNA', 'WW', 'PANW', 'Cl', 'DASH', 'HIMS', 
+           'TTWO', 'PAAS', 'ALLY', 'PHG', 'LAZR', 'FL', 'AI', 'CL', 'SU', 'MLCO', 
+           'ZS', 'BLMN', 'AA', 'BMBL', 'SNOW']
 api_key = 'GC3YN4T4N234HL43'
 for symbol in symbols:
     fetch_ticker_data(symbol, api_key)

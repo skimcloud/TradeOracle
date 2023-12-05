@@ -1,7 +1,6 @@
 from datetime import datetime
 import csv
 import re
-from OrderClass import Order
 from decimal import Decimal
 
 def extract_trades(input_file, output_file):
@@ -18,20 +17,6 @@ def extract_trades(input_file, output_file):
 
 #extract_trades('data.txt', 'output_lines.txt')
 
-def extract_dates(input_file):
-    with open(input_file, 'r') as file:
-        text = file.read()
-
-    trade_pattern = r'\b\d{2}/\d{2}/\d{4} \d{1,2}:\d{2} (?:AM|PM)\b'
-
-    matching_dates = re.findall(trade_pattern, text)
-
-    # Write matching dates to 'shane.txt'
-    with open('shane.txt', 'w') as output_file:
-        for date in matching_dates:
-            output_file.write(date + '\n')
-
-# extract_dates('data.txt')
 
 def truncate_file(input_file, output_file):
     with open(input_file, 'r') as file:
