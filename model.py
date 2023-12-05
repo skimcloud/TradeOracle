@@ -1,6 +1,6 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -13,13 +13,18 @@ features = data.drop('success', axis=1)
 target = data['success']
 
 # Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.5, random_state=42)
 
-# Initialize the Decision Tree Classifier
-clf = DecisionTreeClassifier(random_state=42)
+# Initialize the Decision Tree Classifier with hyperparameters
+clf = DecisionTreeClassifier(random_state=42, max_depth=5, min_samples_split=5, min_samples_leaf=2)
 
 # Fit the classifier to the training data
 clf.fit(X_train, y_train)
+
+# Cross-validation
+cv_scores = cross_val_score(clf, features, target, cv=5)
+print(f"Cross-Validation Scores: {cv_scores}")
+print(f"Mean CV Accuracy: {cv_scores.mean() * 100:.2f}%")
 
 # Predict on the test data
 predictions = clf.predict(X_test)
@@ -28,19 +33,10 @@ predictions = clf.predict(X_test)
 accuracy = accuracy_score(y_test, predictions)
 print(f"Accuracy: {accuracy * 100:.2f}%")
 
-
-# Define features and target variable
-features = data.drop('success', axis=1)
-target = data['success']
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
-
-# Initialize the Decision Tree Classifier
-clf = DecisionTreeClassifier(random_state=42)
-
-# Fit the classifier to the training data
-clf.fit(X_train, y_train)
+# Visualize the Decision Tree
+plt.figure(figsize=(12, 8))
+plot_tree(clf, feature_names=features.columns, filled=True, rounded=True)
+plt.show()
 
 # Get feature importances
 feature_importances = clf.feature_importances_
