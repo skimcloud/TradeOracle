@@ -28,7 +28,7 @@ df['timeframe'] = df['timeframe'].map({'SCALP': 0, 'SWING': 1})
 df['success'] = df['success'].map({0.0: 0, 1.0: 1})
 
 # Normalize 'open', 'high', 'low', 'volume' columns
-columns_to_normalize = ['open_' + str(i) for i in range(1, 181)] + ['high_' + str(i) for i in range(1, 181)] + ['low_' + str(i) for i in range(1, 181)] + ['volume_' + str(i) for i in range(1, 181)]
+columns_to_normalize = ['open_' + str(i) for i in range(1, 121)] + ['high_' + str(i) for i in range(1, 121)] + ['low_' + str(i) for i in range(1, 121)] + ['volume_' + str(i) for i in range(1, 121)]
 scaler = MinMaxScaler()
 df[columns_to_normalize] = scaler.fit_transform(df[columns_to_normalize])
 

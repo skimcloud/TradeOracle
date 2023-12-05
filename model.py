@@ -14,7 +14,7 @@ features = data.drop('success', axis=1)
 target = data['success']
 
 # Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.45, random_state=42)
 
 # Initialize the XGBoost Classifier with hyperparameters
 clf = XGBClassifier(random_state=42, max_depth=5, min_child_weight=1, learning_rate=0.1, n_estimators=100)
