@@ -7,7 +7,7 @@ from xgboost import plot_tree
 import seaborn as sns
 
 # Load the dataset
-data = pd.read_csv('final_indicators_with_orders.csv')
+data = pd.read_csv('final_dataset.csv')
 
 # Define features and target variable
 features = data.drop('success', axis=1)
@@ -56,5 +56,3 @@ print(f"Recall: {recall * 100:.2f}%")
 plt.figure(figsize=(12, 8))
 plot_tree(clf, num_trees=0, ax=plt.gca())
 plt.show()
-
-

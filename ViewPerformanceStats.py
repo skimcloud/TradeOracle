@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
 # Read the CSV file
-data = pd.read_csv('raw_orders.csv')
+data = pd.read_csv('raw_orders_2023.csv')
 
 # Filter IN and OUT orders separately
 in_orders = data[data['direction'] == 'IN']
@@ -105,42 +105,6 @@ ax1.xaxis.set_minor_locator(plt.MaxNLocator(50))
 
 ax2 = ax1.twinx()
 ax2.plot(dates_profit, profits, color='red')
-ax2.set_ylabel('Cumulative Profit', color='red')
-ax2.tick_params('y', colors='red')
-
-plt.tight_layout()
-plt.show()
-
-# Plotting for the last third of data
-fig, ax1 = plt.subplots(figsize=(10, 6))
-ax1.plot(dates[last_third_start:], cumulative_rates[last_third_start:], color='blue')
-ax1.set_xlabel('Time')
-ax1.set_ylabel('Profitability Ratio', color='blue')
-ax1.tick_params('y', colors='blue')
-ax1.set_title('Profitability Ratio and Cumulative Profit Over Time - Last Third')
-ax1.xaxis.set_major_locator(plt.MaxNLocator(10))
-ax1.xaxis.set_minor_locator(plt.MaxNLocator(50))
-
-ax2 = ax1.twinx()
-ax2.plot(dates_profit[last_third_start:], profits[last_third_start:], color='red')
-ax2.set_ylabel('Cumulative Profit', color='red')
-ax2.tick_params('y', colors='red')
-
-plt.tight_layout()
-plt.show()
-
-# Plotting for the last two-thirds of data
-fig, ax1 = plt.subplots(figsize=(10, 6))
-ax1.plot(dates[last_two_thirds_start:], cumulative_rates[last_two_thirds_start:], color='blue')
-ax1.set_xlabel('Time')
-ax1.set_ylabel('Profitability Ratio', color='blue')
-ax1.tick_params('y', colors='blue')
-ax1.set_title('Profitability Ratio and Cumulative Profit Over Time - Last Two-Thirds')
-ax1.xaxis.set_major_locator(plt.MaxNLocator(10))
-ax1.xaxis.set_minor_locator(plt.MaxNLocator(50))
-
-ax2 = ax1.twinx()
-ax2.plot(dates_profit[last_two_thirds_start:], profits[last_two_thirds_start:], color='red')
 ax2.set_ylabel('Cumulative Profit', color='red')
 ax2.tick_params('y', colors='red')
 
