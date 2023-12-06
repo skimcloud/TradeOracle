@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
 # Read the CSV file
-data = pd.read_csv('maria_orders_processed.csv')
+data = pd.read_csv('raw_orders.csv')
 
 # Filter IN and OUT orders separately
 in_orders = data[data['direction'] == 'IN']
@@ -46,7 +46,6 @@ for _, in_order in in_orders.iterrows():
         is_profitable = exit_price is not None and exit_price > entry_price
         instantaneous_win_rates.append((pd.to_datetime(in_order['order_execution_datetime']), is_profitable))
     elif execution_datetime < six_months_ago:
-        print(trade_key)
         is_profitable = False
         instantaneous_win_rates.append((pd.to_datetime(in_order['order_execution_datetime']), is_profitable))
 
@@ -73,7 +72,6 @@ plt.ylabel('Profitability Ratio (Considering Expirations)')
 plt.title('MariaC82\'s Profitability Ratio Over Time')
 plt.xticks(rotation=45)
 plt.yticks([i/100 for i in range(0, 101, 5)])  # Adjust range and step size as needed (100 for 1.0)
-# Adding more ticks to the x-axis (adjust frequency as needed)
 plt.xticks(pd.date_range(min(dates), max(dates), freq='1M'), rotation=45)  # For example, every 2 weeks]
 plt.tight_layout()
 plt.show()
