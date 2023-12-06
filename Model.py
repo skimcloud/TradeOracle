@@ -10,7 +10,7 @@ import seaborn as sns
 data = pd.read_csv('final_dataset.csv')
 
 # Define features and target variable
-features = data.drop('success', axis=1)
+features = data.drop(['success'], axis=1)
 target = data['success']
 
 # Split the data into training and testing sets
