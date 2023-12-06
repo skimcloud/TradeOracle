@@ -9,8 +9,18 @@ import seaborn as sns
 # Load the dataset
 data = pd.read_csv('final_dataset.csv')
 
+# Calculate the correlation matrix
+correlation_matrix = data.drop(['direction'], axis=1).corr()
+
+# Plotting the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", annot_kws={"size": 8})
+plt.title("Pearson Correlation Matrix Heatmap")
+plt.tight_layout()
+plt.show()
+
 # Define features and target variable
-features = data.drop(['success'], axis=1)
+features = data.drop(['success', 'direction'], axis=1)
 target = data['success']
 
 # Split the data into training and testing sets
