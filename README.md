@@ -1,4 +1,4 @@
-# Oracle Project 🔮
+# Trade Oracle Project 🔮
 
    12/5/2023: *Note, the current version on the main branch isn't the model that has the 76.72% accuracy and includes the 181 days of daily price data. Please go to the historical commits and download the one labeled 'Accuracy @ 76.62%' to run the depreciated model. Please wait for the updated model.*
 
@@ -36,9 +36,9 @@ These enhancements will be released by 12/20/2023
 
 ## Approach to Trading
 
-Maria's strategy involves options flow trading, piggybacking off the professional retail trader who has interpreted the flow with her 10+ years of trading experience. This approach entails analyzing the options flow, which represents the volume of options traded at different strike prices and expiration dates. By following the lead of experienced traders, Maria aims to make informed decisions leveraging their interpretation of options flow.
+Maria's strategy's edge is options flow. Shas interpreted the flow with her 10+ years of trading experience. This approach entails analyzing the options flow, which represents the orders of options traded at different strike prices and expiration dates. By following the lead of large institutions trading these options, Maria aims to make informed decisions leveraging their position entries.
 
-The choice of the dataset stems from years of experience trading with options flow at BlackBoxStocks, coupled with a newfound understanding of machine learning acquired at university. The convergence of practical trading knowledge and academic insights has inspired the application of machine learning techniques to enhance trading decisions.
+Oracle's dataset stems from my 2 years of experience trading with technical analysis and options flow as a member of BlackBoxStocks, coupled with a newfound understanding of machine learning acquired at university. The convergence of practical trading knowledge and academic insights has inspired the application of machine learning techniques to enhance trading decisions.
 
 ## How to Use
 
