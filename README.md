@@ -1,4 +1,4 @@
-# Oracle Project 🔮
+# Trade Oracle Project 🔮
 
    12/5/2023: *Note, the current version on the main branch isn't the model that has the 76.72% accuracy and includes the 181 days of daily price data. Please go to the historical commits and download the one labeled 'Accuracy @ 76.62%' to run the depreciated model. Please wait for the updated model.*
 
