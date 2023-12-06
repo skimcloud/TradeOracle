@@ -40,6 +40,11 @@ Maria's strategy's edge is options flow. Shas interpreted the flow with her 10+ 
 
 Oracle's dataset stems from my 2 years of experience trading with technical analysis and options flow as a member of BlackBoxStocks, coupled with a newfound understanding of machine learning acquired at university. The convergence of practical trading knowledge and academic insights has inspired the application of machine learning techniques to enhance trading decisions.
 
+## Statistics
+
+![Profitability Ratio and Cumulative Profit (80% stop loss) vs. Time](images/Figure_1.png)
+
+
 ## How to Use
 
 To replicate the model:
