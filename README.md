@@ -36,7 +36,7 @@ These enhancements will be released by 12/20/2023
 
 ## Approach to Trading
 
-Maria's strategy's edge is options flow. Shas interpreted the flow with her 10+ years of trading experience. This approach entails analyzing the options flow, which represents the orders of options traded at different strike prices and expiration dates. By following the lead of large institutions trading these options, Maria aims to make informed decisions leveraging their position entries.
+Maria's strategy's edge is options flow. She has learned to interpret the flow and conduct technical analysis with her 10+ years of trading experience. She was previously employed at TD Ameritrade. This approach entails analyzing the options flow, which represents the orders of options traded at different strike prices and expiration dates. By following the lead of large institutions trading these options, Maria aims to make informed decisions leveraging their position entries.
 
 Oracle's dataset stems from my 2 years of experience trading with technical analysis and options flow as a member of BlackBoxStocks, coupled with a newfound understanding of machine learning acquired at university. The convergence of practical trading knowledge and academic insights has inspired the application of machine learning techniques to enhance trading decisions.
 
