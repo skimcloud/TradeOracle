@@ -99,7 +99,7 @@ ax1.plot(dates, cumulative_rates, color='blue')
 ax1.set_xlabel('Time')
 ax1.set_ylabel('Profitability Ratio', color='blue')
 ax1.tick_params('y', colors='blue')
-ax1.set_title('Profitability Ratio and Cumulative Profit Over Time - Entire Dataset')
+ax1.set_title('Profitability Ratio and Cumulative Profit Over Time - 2023')
 ax1.xaxis.set_major_locator(plt.MaxNLocator(10))
 ax1.xaxis.set_minor_locator(plt.MaxNLocator(50))
 
