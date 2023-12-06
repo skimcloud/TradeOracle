@@ -1,5 +1,7 @@
 # Oracle Project
 
+   12/5/2023: *Note, the current version on the main branch isn't the model that has the 76.72% accuracy and includes the 181 days of daily price data. Please go to the historical commits and download the one labeled 'Accuracy @ 76.62%' to run the depreciated model. Please wait for the updated model.*
+
 Oracle is a machine learning model designed to predict the profitability of trades made by BlackBoxStocks member Maria. Leveraging historical order entry and exit data from the past three years provided by Maria, this model aims to forecast the success of her trades.
 
 ## Dataset Sample
@@ -23,12 +25,14 @@ Initially, the model utilized historical 90-day time series price data for each 
 
 ## In-progress Implementations
 
-The ongoing enhancements include:
+As of 12/5/2023, The ongoing enhancements include:
 
 - Incorporating price differences to long-term/short-term resistances/supports using Fibonacci
 - Analyzing price variance with moving averages
 - Integration of sentiment analysis scores on the stock
 - Inclusion of various index prices for comprehensive analysis
+
+These enhancements will be released by 12/20/2023
 
 ## Approach to Trading
 
@@ -41,6 +45,8 @@ To replicate the model:
 1. **Dataset**: Ensure you possess the historical order details and price data.
 2. **Python Environment**: Set up a Python environment with essential libraries like Pandas, XGBoost, Matplotlib, and Seaborn.
 3. **Run the Code**: Utilize the provided code snippet to load the dataset, preprocess features, and train the XGBoost classifier.
+
+   12/5/2023: *Again, note that the current version on the main branch isn't the model that has the 76.72% accuracy and includes the 181 days of daily price data. Please go to the historical commits and download the one labeled 'Accuracy @ 76.62%' Thank you.*
 
 ## Contributions and Future Work
 
