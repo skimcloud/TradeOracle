@@ -1,6 +1,6 @@
 # Trade Oracle Project 🔮
 
-**Updated Model Information (12/5/2023):**
+**Updated Model Information (12/6/2023):**
 The main branch now incorporates a Random Forest classifier achieving an 80.49% accuracy and 58.33% recall. More updates coming :)
 
 Oracle is a machine learning model tailored to predict the profitability of trades executed by BlackBoxStocks member Maria. Utilizing historical order entry and exit data over the past three years provided by Maria, this model aims to forecast the success of her trades.
@@ -22,16 +22,14 @@ The dataset comprises various fields:
 
 ## Project Overview
 
-Initially, the model relied on historical 90-day time series price data for each order ticker. However, the accuracy fell short, leading to a shift in strategy towards generating features based on indicators and patterns. The current model achieves 76.62% accuracy by leveraging 181 days of historical price data combined with order details, with a mean cross-validation accuracy of 74%.
+Initially, the model relied on historical 90-day time series price data for each order ticker. However, the accuracy fell short, leading to a shift in strategy towards generating features based on indicators and patterns. The current model achieves 80.49% accuracy by leveraging historical stock indicator data combined with order details.
 
 ## In-progress Implementations
 
-As of 12/5/2023, ongoing enhancements include:
+As of 12/6/2023, ongoing enhancements include:
 
-- Incorporating price differences related to long-term/short-term resistances/supports using Fibonacci
-- Analyzing price variance with moving averages
-- Integrating sentiment analysis scores on the stock
-- Including various index prices for comprehensive analysis
+- Adding different features
+- Testing model with live trades
 
 ## Approach to Trading
 
