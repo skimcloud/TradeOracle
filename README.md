@@ -45,19 +45,19 @@ Oracle's dataset amalgamates 2 years of practical trading experience in technica
 
 ## Performance of model
 
-Cross-Validation Scores:
+- Cross-Validation Scores:
 The cross-validation scores are computed using k-fold cross-validation (with k=6 in this case). These scores are a measure of how well the model generalizes to unseen data. The scores range from 0.54 to 0.74. The mean cross-validation accuracy is 68.02%, indicating the average accuracy of the model across different folds of the data.
 
-Accuracy:
+- Accuracy:
 The overall accuracy of the model on the test set is 80.49%. This metric represents the proportion of correctly predicted instances (both positive and negative) out of the total instances.
 
-Recall:
+- Recall:
 The recall for the positive class (class 1) is 58.33%. It signifies the proportion of actual positive instances that were correctly predicted by the model. In this context, it means that the model identified 58.33% of the actual positive cases.
 
-Precision:
+- Precision:
 The precision for the positive class is 70.00%. Precision represents the proportion of correctly predicted positive instances out of all instances predicted as positive by the model. In this case, when the model predicts a positive outcome, it is correct 70.00% of the time.
 
-Confusion Matrix:
+- Confusion Matrix:
 The confusion matrix visualizes the model's performance in terms of true positive, true negative, false positive, and false negative predictions:
 
 [[26  3]
