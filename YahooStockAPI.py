@@ -14,7 +14,7 @@ unique_tickers = raw_orders['ticker'].unique()
 for ticker in unique_tickers:
     # Specify the date range
     start_date = '2022-12-01'
-    end_date = '2023-11-27'
+    end_date = '2023-12-06'
     
     # Retrieve historical price data using yfinance
     stock_data = yf.download(ticker, start=start_date, end=end_date)
