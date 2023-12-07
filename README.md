@@ -1,12 +1,13 @@
 # Trade Oracle Project 🔮
 
-   12/5/2023: *Note, the current version on the main branch isn't the model that has the 76.72% accuracy and includes the 181 days of daily price data. Please go to the '76.62_model' branch. Please wait for the updated model.*
+**Updated Model Information (12/5/2023):**
+The main branch now incorporates a Random Forest classifier achieving an 80.49% accuracy and 58.33% recall. More updates coming :)
 
-Oracle is a machine learning model designed to predict the profitability of trades made by BlackBoxStocks member Maria. Leveraging historical order entry and exit data from the past three years provided by Maria, this model aims to forecast the success of her trades.
+Oracle is a machine learning model tailored to predict the profitability of trades executed by BlackBoxStocks member Maria. Utilizing historical order entry and exit data over the past three years provided by Maria, this model aims to forecast the success of her trades.
 
 ## Dataset Sample
 
-The dataset contains the following fields:
+The dataset comprises various fields:
 
 - `order_execution_datetime`
 - `trader`
@@ -21,41 +22,38 @@ The dataset contains the following fields:
 
 ## Project Overview
 
-Initially, the model utilized historical 90-day time series price data for each order ticker. However, the accuracy fell short, prompting a shift to generating features based on indicators and patterns. The current accuracy stands at 76.62% using 181 days of historical price data combined with order details, with a mean cross-validation accuracy of 74%.
+Initially, the model relied on historical 90-day time series price data for each order ticker. However, the accuracy fell short, leading to a shift in strategy towards generating features based on indicators and patterns. The current model achieves 76.62% accuracy by leveraging 181 days of historical price data combined with order details, with a mean cross-validation accuracy of 74%.
 
 ## In-progress Implementations
 
-As of 12/5/2023, The ongoing enhancements include:
+As of 12/5/2023, ongoing enhancements include:
 
-- Incorporating price differences to long-term/short-term resistances/supports using Fibonacci
+- Incorporating price differences related to long-term/short-term resistances/supports using Fibonacci
 - Analyzing price variance with moving averages
-- Integration of sentiment analysis scores on the stock
-- Inclusion of various index prices for comprehensive analysis
-
-These enhancements will be released by 12/20/2023
+- Integrating sentiment analysis scores on the stock
+- Including various index prices for comprehensive analysis
 
 ## Approach to Trading
 
-Maria's strategy's edge is options flow. She has learned to interpret the flow and conduct technical analysis with her 10+ years of trading experience. She was previously employed at TD Ameritrade. This approach entails analyzing the options flow, which represents the orders of options traded at different strike prices and expiration dates. By following the lead of large institutions trading these options, Maria aims to make informed decisions leveraging their position entries.
+Maria's strategy revolves around options flow analysis, leveraging her 10+ years of trading experience, including her tenure at TD Ameritrade. Her approach involves analyzing options flow, representing orders of options traded at varying strike prices and expiration dates. By following the lead of large institutions trading these options, Maria aims to make informed decisions based on their position entries.
 
-Oracle's dataset stems from my 2 years of experience trading with technical analysis and options flow as a member of BlackBoxStocks, coupled with a newfound understanding of machine learning acquired at university. The convergence of practical trading knowledge and academic insights has inspired the application of machine learning techniques to enhance trading decisions.
+Oracle's dataset amalgamates 2 years of practical trading experience in technical analysis and options flow as a BlackBoxStocks member, coupled with academic insights gained through machine learning studies at university. This convergence aims to apply machine learning techniques to enhance trading decisions.
 
 ## Statistics
 
 ![Profitability Ratio and Cumulative Profit (80% stop loss) vs. Time](images/Figure_1.png)
 
-
 ## How to Use
 
 To replicate the model:
 
-1. **Dataset**: Ensure you possess the historical order details and price data.
+1. **Dataset**: Ensure you possess historical order details and price data.
 2. **Python Environment**: Set up a Python environment with essential libraries like Pandas, XGBoost, Matplotlib, and Seaborn.
-3. **Run the Code**: Utilize the provided code snippet to load the dataset, preprocess features, and train the XGBoost classifier.
+3. **Run the Code**: Utilize the provided code snippet to load the dataset, preprocess features, and train the Random Forest classifier.
 
 ## Contributions and Future Work
 
-Contributions, suggestions, and enhancements to improve model accuracy and efficiency are encouraged. Future iterations may involve:
+Contributions, suggestions, and enhancements to improve model accuracy and efficiency are welcomed. Future iterations may involve:
 
 - Refining feature engineering techniques
 - Incorporating additional technical indicators
