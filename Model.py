@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, recall_score
+from sklearn.metrics import accuracy_score, recall_score, precision_score, confusion_matrix, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -32,17 +32,41 @@ clf = RandomForestClassifier(n_estimators=100, random_state=42)
 clf.fit(X_train, y_train)
 
 # Cross-validation
-cv_scores = cross_val_score(clf, features, target, cv=5)
+cv_scores = cross_val_score(clf, features, target, cv=6)
 print(f"Cross-Validation Scores: {cv_scores}")
 print(f"Mean CV Accuracy: {cv_scores.mean() * 100:.2f}%")
 
 # Predict on the test data
 predictions = clf.predict(X_test)
 
-# Calculate accuracy
+# Calculate and print accuracy, recall, and precision
 accuracy = accuracy_score(y_test, predictions)
-print(f"Accuracy: {accuracy * 100:.2f}%")
-
-# Calculate and print recall
 recall = recall_score(y_test, predictions)
+precision = precision_score(y_test, predictions)
+
+print(f"Accuracy: {accuracy * 100:.2f}%")
 print(f"Recall: {recall * 100:.2f}%")
+print(f"Precision: {precision * 100:.2f}%")
+
+# Confusion matrix
+conf_matrix = confusion_matrix(y_test, predictions)
+print("Confusion Matrix:")
+print(conf_matrix)
+
+# Classification report
+class_report = classification_report(y_test, predictions)
+print("Classification Report:")
+print(class_report)
+
+# Get feature importances from the trained model
+feature_importances = clf.feature_importances_
+
+# Create a DataFrame with feature names and their importances
+feature_importance_df = pd.DataFrame({'Feature': features.columns, 'Importance': feature_importances})
+
+# Sort the features based on their importance in descending order
+top_10_features = feature_importance_df.sort_values(by='Importance', ascending=False).head(10)
+
+# Print the top 10 features
+print("Top 10 Features:")
+print(top_10_features)
