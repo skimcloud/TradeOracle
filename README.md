@@ -3,7 +3,7 @@
 **Updated Model Information (12/6/2023):**
 The main branch now incorporates a Random Forest classifier achieving an 80.49% accuracy and 70% precision. More updates coming 🤑⌛
 
-Oracle is a machine learning model tailored to predict the profitability of trades executed by BlackBoxStocks member Maria. Utilizing historical order entry and exit data over the past three years provided by Maria, this model aims to forecast the success of her trades.
+Oracle is a machine learning model tailored to predict the profitability of trades executed by BlackBoxStocks team trader Maria. Utilizing historical order entry and exit data over the past three years provided by Maria, this model aims to forecast the success of her trades.
 
 ## Dataset Sample
 
