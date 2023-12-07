@@ -41,7 +41,8 @@ Oracle's dataset amalgamates 2 years of practical trading experience in technica
 
 ## Statistics
 
-![Profitability Ratio and Cumulative Profit (80% stop loss) vs. Time](images/Figure_1.png)
+![2020-2023 Year Profitability Ratio and Cumulative Profit (80% stop loss) vs. Time](images/Figure_1.png)
+![2023 Year Profitability Ratio and Cumulative Profit (80% stop loss) vs. Time](images/Figure_2.png)
 
 ## How to Use
 
