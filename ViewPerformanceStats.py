@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+from tkinter import Tk, Frame, Label, Scrollbar, Listbox
 
 # Read the CSV file
 data = pd.read_csv('raw_orders_2023.csv')
@@ -110,3 +111,64 @@ ax2.tick_params('y', colors='red')
 
 plt.tight_layout()
 plt.show()
+
+
+# Create a list to store order details
+order_details = []
+
+# Populate the list with order details
+for _, in_order in in_orders.iterrows():
+    trade_key = (
+        in_order['trader'],
+        in_order['ticker'],
+        in_order['expiration'],
+        in_order['contract_details']
+    )
+    three_months_ago = datetime.now() - timedelta(days=60)  # 3 months ago
+    execution_datetime = pd.to_datetime(in_order['order_execution_datetime'])
+    if trade_key in exits or execution_datetime < three_months_ago:
+        entry_price = float(in_order['contract_price'])  # Convert entry price to float
+        exit_price = exits.get(trade_key)
+        if exit_price is not None:
+            is_profitable = exit_price > entry_price
+        else:
+            is_profitable = False
+        order_details.append((execution_datetime, is_profitable, entry_price, exit_price))
+
+# Sort order details by datetime
+order_details.sort(key=lambda x: x[0])
+
+# Create a tkinter window
+root = Tk()
+root.title("List of Orders")
+
+# Create a frame and a scrollbar
+frame = Frame(root)
+frame.pack(fill='both', expand=True)
+
+scrollbar = Scrollbar(frame, orient='vertical')
+scrollbar.pack(side='right', fill='y')
+
+# Create a listbox
+listbox = Listbox(frame, yscrollcommand=scrollbar.set)
+listbox.pack(fill='both', expand=True)
+
+# Configure scrollbar
+scrollbar.config(command=listbox.yview)
+
+# Function to color orders based on profitability
+def color_order(is_profitable):
+    return 'green' if is_profitable else 'red'
+
+# Populate the listbox with orders
+for order in order_details:
+    execution_date = order[0].strftime('%Y-%m-%d %H:%M:%S')
+    is_profitable = order[1]
+    entry_price = order[2]
+    exit_price = order[3] if order[3] is not None else "No exit"
+
+    color = color_order(is_profitable)
+    listbox.insert('end', f"Date: {execution_date}, Entry Price: {entry_price}, Exit Price: {exit_price}")
+    listbox.itemconfig('end', {'bg': color, 'fg': 'white'})  # Set background color for the row
+
+root.mainloop()
