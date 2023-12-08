@@ -124,7 +124,7 @@ for _, in_order in in_orders.iterrows():
         in_order['expiration'],
         in_order['contract_details']
     )
-    three_months_ago = datetime.now() - timedelta(days=60)  # 3 months ago
+    three_months_ago = datetime.now() - timedelta(days=90)  # 3 months ago
     execution_datetime = pd.to_datetime(in_order['order_execution_datetime'])
     if trade_key in exits or execution_datetime < three_months_ago:
         entry_price = float(in_order['contract_price'])  # Convert entry price to float
