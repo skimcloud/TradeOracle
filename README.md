@@ -19,6 +19,14 @@ The dataset comprises various fields:
 - `timeframe`
 - `comment`
 - `success`
+- `long_term_pivot`
+- `long_term_support_l1`
+- `long_term_support_l2`
+- `long_term_resistance_l1`
+- `long_term_resistance_l2`
+- `day_high`
+- `day_low`
+- `day_close`
 
 ## Project Overview
 
@@ -73,7 +81,7 @@ False positives (top-right): 3 instances incorrectly predicted as positive.
 To replicate the model:
 
 1. **Dataset**: Ensure you possess historical order details and price data.
-2. **Python Environment**: Set up a Python environment with essential libraries like Pandas, XGBoost, Matplotlib, and Seaborn.
+2. **Python Environment**: Set up a Python environment with essential libraries like Pandas, Matplotlib, and Seaborn.
 3. **Run the Code**: Utilize the provided code snippet to load the dataset, preprocess features, and train the Random Forest classifier.
 
 ## Contributions and Future Work
@@ -84,4 +92,4 @@ Contributions, suggestions, and enhancements to improve model accuracy and effic
 - Incorporating additional technical indicators
 - Optimizing hyperparameters for superior performance
 
-Feel free to reach out for collaboration or improvements to Oracle!
+Feel free to reach out for collaboration or improvements to TradeOracle🔮
