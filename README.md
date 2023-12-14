@@ -28,6 +28,66 @@ The dataset comprises various fields:
 - `day_low`
 - `day_close`
 
+## Future additions to dataset to better model market conditions for each trade
+- Ticker Ordered
+- SP500
+- DOW
+- NYSE Composite
+- Nasdaq Composite 
+- Nasdaq100 Composite 
+- Russell1000 
+- Russell2000
+- Russell3000
+- Russell Micro
+- TSX Composite
+- FTSE100 Composite
+- FTSE250 Composite 
+- FTSEALL 
+- DAX 
+- ASX50
+- ASX200
+- ASXORD
+- HSI
+- STI
+- KLSE
+- NIFTY50
+- NEXT50
+- NIFTY200
+- NIFTY500
+- WTI Crude Oil Index
+- Brent Crude Oil Index
+- Crude Oil
+- Gasoline
+- Natural Gas
+- Heating Oil
+- Gold
+- Silver
+- Copper Platnium
+- Corn 
+- Wheat Cocoa
+- Cotton #2
+- Live Cattle
+
+And these indicators for above:
+- Advance / Decline Line
+- McClellan Oscillator
+- McClellan Summation Index
+- Advance / Decline Volume Line
+- McClellan Volume Oscillator
+- McClellan Volume Summation Index
+- Advance / Decline Ratio
+- rms Index
+- New Highs - New Lows
+- Volume
+- Cap
+- Change
+- Change%
+- Prices
+- Support
+- Resistance
+
+
+
 ## Project Overview
 
 Initially, the model relied on historical 90-day time series price data for each order ticker. However, the accuracy fell short, leading to a shift in strategy towards generating features based on indicators and patterns. The current model achieves 80.49% accuracy by leveraging historical stock indicator data combined with order details.
