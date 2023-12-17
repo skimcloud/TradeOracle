@@ -2,10 +2,10 @@ import os
 import pandas as pd
 
 # Directory containing CSV files
-data_directory = 'three_year_stock_data'
+data_directory = 'Playground/stationary_stock_data'
 # Loop through CSV files in the data directory
 for filename in os.listdir(data_directory):
-    if filename.endswith('data.csv'):
+    if filename.endswith('prices.csv'):
         file_path = os.path.join(data_directory, filename)
         ticker = filename.split('_diff_prices')[0]  # Extract ticker from filename
         
