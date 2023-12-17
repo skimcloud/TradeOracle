@@ -4,6 +4,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, recall_score, precision_score, confusion_matrix, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn import tree
+
 
 # Load the dataset
 data = pd.read_csv('final_dataset.csv')
@@ -27,7 +29,6 @@ X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=
 
 # Initialize the Random Forest classifier with hyperparameters
 clf = RandomForestClassifier(n_estimators=100, random_state=42)
-
 # Fit the classifier to the training data
 clf.fit(X_train, y_train)
 

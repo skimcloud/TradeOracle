@@ -42,22 +42,26 @@ for _, in_order in in_orders.iterrows():
         in_order['expiration'],
         in_order['contract_details']
     )
-    three_months_ago = datetime.now() - timedelta(days=90)  # 3 months ago
+    three_months_ago = datetime.now() - timedelta(days=120)  # 3 months ago
     execution_datetime = pd.to_datetime(in_order['order_execution_datetime'])
+    entry_price = float(in_order['contract_price'])
     if trade_key in exits:
-        entry_price = float(in_order['contract_price'])  # Convert entry price to float
         exit_price = exits[trade_key]
         is_profitable = exit_price is not None and exit_price > entry_price
         instantaneous_win_rates.append((pd.to_datetime(in_order['order_execution_datetime']), is_profitable))
 
         if is_profitable:
-            total_profit += exit_price - entry_price  # Calculate profit
+            print(exit_price - entry_price)
+            total_profit += (exit_price - entry_price)*100  # Calculate profit
         else:
-            total_profit -= (entry_price * 0.8)  # Apply 80% stop loss on losing positions
+            total_profit -= (entry_price - exit_price)*100  # Apply 80% stop loss on losing positions
         profit_over_time.append((execution_datetime, total_profit))  # Update profit over time
         total_trades += 1
     elif execution_datetime < three_months_ago:
         is_profitable = False
+        total_profit -= (entry_price*70)
+        total_trades += 1
+        entry_price = float(in_order['contract_price'])
         instantaneous_win_rates.append((pd.to_datetime(in_order['order_execution_datetime']), is_profitable))
 
 # Calculate consecutive wins
@@ -69,11 +73,7 @@ for _, is_win in instantaneous_win_rates:
         max_consecutive_wins = max(max_consecutive_wins, consecutive_wins)
     else:
         consecutive_wins = 0
-
-# Calculate the average number of consecutive wins
-average_consecutive_wins = max_consecutive_wins / len(instantaneous_win_rates) if len(instantaneous_win_rates) > 0 else 0
-print(f"Average number of consecutive wins: {average_consecutive_wins:.2f}")
-
+        
 # Sort trades by datetime
 instantaneous_win_rates.sort(key=lambda x: x[0])
 profit_over_time.sort(key=lambda x: x[0])
@@ -84,7 +84,7 @@ cumulative_rates = [sum(rates[:i + 1]) / (i + 1) for i in range(len(rates))]
 
 # Calculate the average return per winning trade
 average_return_per_winning_trade = total_profit / total_trades if total_trades > 0 else 0
-print(f"Average return per winning trade: {average_return_per_winning_trade * 100:.2f}%")
+print(f"Average return per winning trade: ${average_return_per_winning_trade*100}")
 
 # Calculate cumulative profit over time
 dates_profit, profits = zip(*profit_over_time)
@@ -100,7 +100,7 @@ ax1.plot(dates, cumulative_rates, color='blue')
 ax1.set_xlabel('Time')
 ax1.set_ylabel('Profitability Ratio', color='blue')
 ax1.tick_params('y', colors='blue')
-ax1.set_title('Profitability Ratio and Cumulative Profit Over Time - 2023')
+ax1.set_title('Marias Profitability Ratio and Cumulative Profit Over Time - 2023')
 ax1.xaxis.set_major_locator(plt.MaxNLocator(10))
 ax1.xaxis.set_minor_locator(plt.MaxNLocator(50))
 
