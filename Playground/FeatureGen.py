@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Create a new directory to store the output files
-output_directory = 'Playground/Processed_Stock_Data'
+output_directory = 'Playground/Processed_Index_Data'
 os.makedirs(output_directory, exist_ok=True)
 
 # Function to calculate indicators
@@ -54,7 +54,7 @@ def calculate_indicators(file_path):
     data.to_csv(output_file, index=True)
 
 # Define the directory containing the files
-directory = 'Playground/stationary_stock_data'
+directory = 'Playground/stationary_index_data'
 
 # Get all files ending with 'prices.csv' in the specified directory
 files = [f for f in os.listdir(directory) if f.endswith('prices.csv')]
