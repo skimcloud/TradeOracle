@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from tkinter import Tk, Frame, Label, Scrollbar, Listbox
 
 # Read the CSV file
-data = pd.read_csv('raw_orders_2023.csv')
+data = pd.read_csv('raw_orders.csv')
 
 # Filter IN and OUT orders separately
 in_orders = data[data['direction'] == 'IN']

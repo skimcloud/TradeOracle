@@ -31,8 +31,8 @@ def fracDiff_FFD(series, d, thres=1e-5):
     return df
 
 # Directory containing CSV files
-data_directory = 'three_year_stock_data'
-output_directory = 'stationary_stock_data'
+data_directory = 'Playground/index_price_data'
+output_directory = 'Playground/stationary_index_data'
 
 # Create a new directory for output if it doesn't exist
 if not os.path.exists(output_directory):
