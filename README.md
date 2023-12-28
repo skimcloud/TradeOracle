@@ -2,7 +2,7 @@
 # 🔮 TradeOracle: Long Options Flow Signal Prediction + Risk Management
 
 ## Introduction
-TradeOracle is an advanced machine learning model designed to predict the outcomes of long options flow signal trading strategies. Leveraging historical trade data from the BlackBoxStocks team trader Maria Chaudhry, it provides traders with actionable insights to enhance their decision-making process.
+TradeOracle is an advanced machine learning model designed to predict the outcomes of long options flow signal trading strategies in collaboration with BlackBoxStocks team trader Maria Chaudhry. Leveraging her historical trade and market data provides traders with actionable insights to enhance their decision-making process.
 
 ## Features
 - **Predictive Analysis**: Utilize historical trading data to predict the success of future trades.
@@ -14,17 +14,16 @@ TradeOracle is an advanced machine learning model designed to predict the outcom
 - Pandas, NumPy, Scikit-Learn, and other relevant Python libraries.
 - Access to historical options trading data.
 
-## Installation and Setup
+## Installation
 1. Clone the repository: `git clone [repository_url]`
-2. Install required Python packages: `pip install -r requirements.txt`
 
-## Usage
+##  Setup & Usage
 To use TradeOracle, follow these steps:
 1. Prepare your data using `DataDownloader.py`.
 2. Process the data with `DataProcessor.py`.
 3. Generate features using `FeatureGen.py`.
 4. Run the `TradeProcessor.py` to analyze the trades.
-5. Train the model using the processed data.
+5. Train the model using the processed data. ⌛ (in progress...)
 
 ## Components
 - `DataDownloader.py`: Module for downloading trade data.
@@ -40,7 +39,9 @@ TradeOracle works with various types of trade data:
 For more insights on Maria Chaudhry's trading strategies, visit [CheddarNews Interview](https://www.youtube.com/watch?v=FfGfNnhXVFM).
 
 ## Model Details
-The machine learning model in TradeOracle uses a Random Forest Model to predict the success of trades. It will soon be tested and validated with historical data and new dataset ⌛
+The machine learning model in TradeOracle uses a Random Forest Model to predict the success of trades. It will soon be tested and validated with historical data and our new dataset ⌛ (in progress...)
 
 ## In Progress
 - **MetaLabeling**: Upcoming feature to enhance model accuracy and adaptability by applying meta-labeling techniques to the prediction process.
+
+## Expected Update: 12/30/2023
