@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 # Read the CSV file
-data = pd.read_csv('raw_orders_2023.csv')
+data = pd.read_csv('raw_orders.csv')
 
 # Filter IN orders
 in_orders = data[data['direction'] == 'IN'].copy()  # Create a copy of the filtered data
@@ -48,4 +48,4 @@ for _, in_order in in_orders.iterrows():
 in_orders['success'] = success_list
 
 # Save the new version of the CSV file with only 'IN' orders and the 'success' column
-in_orders.to_csv('entries_matched_2023.csv', index=False)
+in_orders.to_csv('entries_matched.csv', index=False)
