@@ -40,7 +40,7 @@ TradeOracle works with various types of trade data:
 For more insights on Maria Chaudhry's trading strategies, visit [CheddarNews Interview](https://www.youtube.com/watch?v=FfGfNnhXVFM).
 
 ## Model Details
-The machine learning model in TradeOracle uses [algorithm details, e.g., Random Forest, Neural Networks] to predict the success of trades. It has been tested and validated with historical data, achieving [performance metrics, e.g., accuracy, precision].
+The machine learning model in TradeOracle uses a Random Forest Model to predict the success of trades. It will soon be tested and validated with historical data and new dataset ⌛
 
 ## In Progress
 - **MetaLabeling**: Upcoming feature to enhance model accuracy and adaptability by applying meta-labeling techniques to the prediction process.
