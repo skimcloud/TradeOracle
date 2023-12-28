@@ -1,5 +1,5 @@
 
-# TradeOracle: Long Options Flow Signal Prediction
+# 🔮 TradeOracle: Long Options Flow Signal Prediction + Risk Management
 
 ## Introduction
 TradeOracle is an advanced machine learning model designed to predict the outcomes of long options flow signal trading strategies. Leveraging historical trade data from the BlackBoxStocks team trader Maria Chaudhry, it provides traders with actionable insights to enhance their decision-making process.
@@ -37,19 +37,10 @@ TradeOracle works with various types of trade data:
 - `raw_trade_data.csv`: Raw trading data from BlackBoxStocks team trader Maria Chaudhry.
 - `aggregated_index_data.csv`: Aggregated data from multiple indices.
 - Other relevant datasets.
-For more insights on Maria Chaudhry's trading strategies, visit [her YouTube channel](https://www.youtube.com/watch?v=FfGfNnhXVFM).
+For more insights on Maria Chaudhry's trading strategies, visit [CheddarNews Interview](https://www.youtube.com/watch?v=FfGfNnhXVFM).
 
 ## Model Details
 The machine learning model in TradeOracle uses [algorithm details, e.g., Random Forest, Neural Networks] to predict the success of trades. It has been tested and validated with historical data, achieving [performance metrics, e.g., accuracy, precision].
 
 ## In Progress
 - **MetaLabeling**: Upcoming feature to enhance model accuracy and adaptability by applying meta-labeling techniques to the prediction process.
-
-## Contributing
-Contributions to TradeOracle are welcome. Please read the contributing guidelines before making a pull request.
-
-## License
-[License information]
-
-## Contact
-For support or queries, contact [Contact Information].
