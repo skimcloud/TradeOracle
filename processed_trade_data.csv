@@ -342,6 +342,7 @@ order_execution_datetime,trader,ticker,expiration,contract_details,entry_price,e
 01/27/2023 6:53 AM,MariaC82,FTCH,02/10/2023,7,0.37,0.91,0.54,True
 01/27/2023 7:10 AM,MariaC82,EBAY,07/21/2023,50,4.21,0.0,-4.21,False
 01/30/2023 7:07 AM,MariaC82,SHOP,02/03/2023,45.5,4.01,7.8,3.79,True
+02/01/2023 6:51 AM,MariaC82,SNAP,01/19/2024,13,1.71,4.8,3.09,True
 02/02/2023 6:36 AM,MariaC82,AI,03/03/2023,22,3.8,6.52,2.72,True
 02/02/2023 10:13 AM,MariaC82,GM,04/21/2023,50,0.35,0.0,-0.35,False
 02/03/2023 6:53 AM,MariaC82,SNOW,07/21/2023,235,9.45,0.0,-9.45,False
