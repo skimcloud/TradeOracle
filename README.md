@@ -23,7 +23,7 @@ To use TradeOracle, follow these steps:
 2. Process the data with `DataProcessor.py`.
 3. Generate features using `FeatureGen.py`.
 4. Run the `TradeProcessor.py` to analyze the trades.
-5. Train the model using the processed data. ⌛ (in progress...)
+5. Train the model using the processed data. ⌛ 
 
 ## Components
 - `DataDownloader.py`: Module for downloading trade data.
@@ -39,9 +39,10 @@ TradeOracle works with various types of trade data:
 For more insights on Maria Chaudhry's trading strategies, visit [CheddarNews Interview](https://www.youtube.com/watch?v=FfGfNnhXVFM).
 
 ## Model Details
-The machine learning model in TradeOracle uses a Random Forest Model to predict the success of trades. It will soon be tested and validated with historical data and our new dataset ⌛ (in progress...)
+The machine learning model in TradeOracle uses a Random Forest Model to predict the success of trades. It will soon be tested and validated with historical data and our new dataset ⌛
 
 ## In Progress
 - **MetaLabeling**: Upcoming feature to enhance model accuracy and adaptability by applying meta-labeling techniques to the prediction process.
+- Merging final dataset with triple barrier features inspired from Marcos López de Prado's textbook: Advances in Financial Machine Learning 
 
-## Expected Update: 12/30/2023
+## Expected Update: 12/30/2023 ⌛
