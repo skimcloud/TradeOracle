@@ -98,6 +98,7 @@ save_processed_data(final_trade_data_with_index, FINAL_OUTPUT_DIRECTORY)
 print(f"Processed trade data saved to {FINAL_OUTPUT_DIRECTORY}")
 
 """
+
 import os
 import pandas as pd
 from datetime import datetime
@@ -181,6 +182,5 @@ final_trade_data_with_index = append_index_data(processed_trade_data, index_data
 save_processed_data(final_trade_data_with_index, FINAL_OUTPUT_DIRECTORY)
 
 print(f"Processed trade data with index data saved to {FINAL_OUTPUT_DIRECTORY}")
-
 
 """

@@ -102,19 +102,25 @@ def generate_features(file_path, output_directory, isIndex):
     data.to_csv(output_file, index=True)
 
 def merge_files_based_on_date(directory):
-    columns_to_drop = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
     merged_df = pd.DataFrame()
     file_paths = [os.path.join(directory, file) for file in os.listdir(directory) if file.endswith('.csv')]
     for file_path in file_paths:
         df = pd.read_csv(file_path)
         df['Date'] = pd.to_datetime(df['Date'])
-        # Drop specified columns if they exist in the DataFrame
-        df.drop(columns=[col for col in columns_to_drop if col in df.columns], inplace=True)
+        
+        # Extracting ticker from file name (assuming the format is 'ticker.csv')
+        ticker = os.path.splitext(os.path.basename(file_path))[0]
+        
+        # Renaming columns with ticker prefix
+        columns_to_rename = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
+        df.rename(columns={col: f'{ticker}_{col}' for col in columns_to_rename if col in df.columns}, inplace=True)
+        
+        # Merging dataframes
         if merged_df.empty:
             merged_df = df
         else:
-            file_identifier = os.path.splitext(os.path.basename(file_path))[0]
-            merged_df = pd.merge(merged_df, df, on='Date', how='outer', suffixes=('', f'_{file_identifier}'))
+            merged_df = pd.merge(merged_df, df, on='Date', how='outer')
+    
     merged_df.to_csv(INDEX_AGGREGATED_OUTPUT_NAME, index=False)
     
 if __name__ == "__main__":
