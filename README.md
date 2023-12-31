@@ -42,7 +42,7 @@ For more insights on Maria Chaudhry's trading strategies, visit [CheddarNews Int
 The machine learning model in TradeOracle uses a Random Forest Model to predict the success of trades. It will soon be tested and validated with historical data and our new dataset ⌛
 
 ## In Progress
-- **MetaLabeling**: Upcoming secondary model to enhance primary model accuracy and adaptability by applying meta-labeling techniques to the prediction process.
+- **MetaLabeling**: Upcoming feature to enhance model accuracy and adaptability by applying meta-labeling techniques to the prediction process.
 - Merging final dataset with triple barrier features inspired from Marcos López de Prado's textbook: Advances in Financial Machine Learning 
 
 ## Expected Update: 12/30/2023 ⌛
