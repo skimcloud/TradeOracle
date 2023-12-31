@@ -1,81 +1,59 @@
 import pandas as pd
 from datetime import datetime
+import os
 
-# Constants
-INPUT_DIRECTORY = 'raw_trade_data.csv'
+# Directory paths
 CLOSED_OUTPUT_DIRECTORY = 'processed_trade_data.csv'
-OPEN_OUTPUT_DIRECTORY = 'open_trades.csv'
+STOCK_DATA_DIRECTORY = 'final_stock_data'
+FINAL_OUTPUT_DIRECTORY = 'final_trade_data.csv'
 
-def process_trades(input_file, closed_output_file, open_output_file):
-    # Load the raw trade data
-    raw_trade_data = pd.read_csv(input_file)
+# Function to convert date format in processed_trade_data to match that in stock data files
+def convert_date_format(date_str):
+    date_obj = datetime.strptime(date_str, '%m/%d/%Y %I:%M %p')
+    return date_obj.strftime('%Y-%m-%d')
 
-    # Process 'contract_details' to remove the 'C' value after the contract strike
-    raw_trade_data['contract_details'] = raw_trade_data['contract_details'].str.replace('C', '')
+# Read processed trade data
+processed_trade_data = pd.read_csv(CLOSED_OUTPUT_DIRECTORY)
+processed_trade_data['trade_date'] = processed_trade_data['order_execution_datetime'].apply(convert_date_format)
 
-    # Prepare the dataframes for the output files
-    closed_trades = pd.DataFrame(columns=['order_execution_datetime', 'trader', 'ticker', 'expiration', 
-                                          'contract_details', 'entry_price', 'exit_price', 'profit', 'success'])
-    open_trades = pd.DataFrame(columns=['order_execution_datetime', 'trader', 'ticker', 'expiration', 
-                                        'contract_details', 'contract_price', 'timeframe', 'comment'])
+# Initialize a list to hold combined data
+combined_data = []
 
-    # Loop through the data
-    for index, row in raw_trade_data.iterrows():
-        if row['direction'] == 'IN':
-            # Find the corresponding 'OUT' entries
-            exit_rows = raw_trade_data[(raw_trade_data['ticker'] == row['ticker']) &
-                                       (raw_trade_data['contract_details'] == row['contract_details']) &
-                                       (raw_trade_data['expiration'] == row['expiration']) &
-                                       (raw_trade_data['direction'] == 'OUT')]
+# Determine the columns for the final combined dataset
+final_columns = processed_trade_data.columns.tolist() + ['stock_data_found'] + ['stock_' + col for col in pd.read_csv(os.path.join(STOCK_DATA_DIRECTORY, 'AAPL.csv')).columns]
 
-            if not exit_rows.empty:
-                # Calculate average exit price and profit
-                average_exit_price = round(exit_rows['contract_price'].mean(), 2)
-                profit = round(average_exit_price - row['contract_price'], 2)
-                success = profit > 0
+# Loop through each trade in processed_trade_data
+for index, trade in processed_trade_data.iterrows():
+    ticker = trade['ticker']
+    trade_date = trade['trade_date']
 
-                # Add to closed_trades dataframe
-                new_row = pd.DataFrame([{
-                    'order_execution_datetime': row['order_execution_datetime'],
-                    'trader': row['trader'],
-                    'ticker': row['ticker'],
-                    'expiration': row['expiration'],
-                    'contract_details': row['contract_details'],
-                    'entry_price': row['contract_price'],
-                    'exit_price': average_exit_price,
-                    'profit': profit,
-                    'success': success
-                }])
-                closed_trades = pd.concat([closed_trades, new_row], ignore_index=True)
-            else:
-                # Check if the contract has expired
-                expiration_date = datetime.strptime(row['expiration'], '%m/%d/%Y')
-                if expiration_date > datetime.now():
-                    # Trade is still open, add to open_trades dataframe
-                    new_row = pd.DataFrame([row])
-                    open_trades = pd.concat([open_trades, new_row], ignore_index=True)
-                else:
-                    # Contract expired, assume profit is negative of the entry price
-                    profit = -row['contract_price']
-                    success = False
+    # Construct path to the ticker's CSV file in final_stock_data
+    ticker_file_path = os.path.join(STOCK_DATA_DIRECTORY, f"{ticker}.csv")
 
-                    # Add to closed_trades dataframe
-                    new_row = pd.DataFrame([{
-                        'order_execution_datetime': row['order_execution_datetime'],
-                        'trader': row['trader'],
-                        'ticker': row['ticker'],
-                        'expiration': row['expiration'],
-                        'contract_details': row['contract_details'],
-                        'entry_price': row['contract_price'],
-                        'exit_price': 0,
-                        'profit': profit,
-                        'success': success
-                    }])
-                    closed_trades = pd.concat([closed_trades, new_row], ignore_index=True)
+    # Initialize a row with NaNs for stock data
+    combined_row = pd.Series([None] * len(final_columns), index=final_columns)
+    combined_row[processed_trade_data.columns] = trade
 
-    # Save the output files
-    closed_trades.to_csv(closed_output_file, index=False)
-    open_trades.to_csv(open_output_file, index=False)
+    # Check if the ticker's file exists
+    if os.path.exists(ticker_file_path):
+        stock_data = pd.read_csv(ticker_file_path)
+        
+        # Find the stock data for the matching date
+        matching_stock_data = stock_data[stock_data['Date'] == trade_date]
 
-# Run the process
-process_trades(INPUT_DIRECTORY, CLOSED_OUTPUT_DIRECTORY, OPEN_OUTPUT_DIRECTORY)
+        # If matching data is found, combine it with the trade data
+        if not matching_stock_data.empty:
+            for col in matching_stock_data.columns:
+                combined_row['stock_' + col] = matching_stock_data.iloc[0][col]
+            combined_row['stock_data_found'] = True
+        else:
+            combined_row['stock_data_found'] = False
+
+    # Append the combined row to the list
+    combined_data.append(combined_row)
+
+# Concatenate all combined rows into a dataframe
+final_trade_data = pd.DataFrame(combined_data)
+
+# Save the combined data to a new CSV file
+final_trade_data.to_csv(FINAL_OUTPUT_DIRECTORY, index=False)

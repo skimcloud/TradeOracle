@@ -69,16 +69,18 @@ def calculate_additional_indicators(data, ticker_prefix):
         data[ticker_prefix + 'HL_20_realVol_20'] = data[ticker_prefix + 'log1DayRange'].rolling(window=20).std()
         data[ticker_prefix + 'HL_5_realVol_20'] = data[ticker_prefix + 'log1DayRange'].rolling(window=5).std()
 
-def generate_features(file_path, output_directory):
+def generate_features(file_path, output_directory, isIndex):
     """Process each file and save the results."""
+    ticker_prefix = '' # Stock features will not be aggregated into one file thus ticker_prefix = ''
     data = pd.read_csv(file_path)
-    ticker = file_path.split('\\')[-1].split('_')[0]
+    if isIndex == True: # Aggregated indices features file requires unique column names
+        ticker = file_path.split('\\')[-1].split('.')[0]
+        ticker_prefix = f'{ticker}_'
 
     if 'Date' in data.columns:
         data['Date'] = pd.to_datetime(data['Date'])
         data.set_index('Date', inplace=True)
 
-    ticker_prefix = f'{ticker}_'
     calculate_moving_averages(data, ticker_prefix)
     calculate_volatility(data, ticker_prefix)
     calculate_volume(data, ticker_prefix)
@@ -118,10 +120,10 @@ def merge_files_based_on_date(directory):
 if __name__ == "__main__":
     for file in os.listdir(INDEX_INPUT_DIRECTORY):
         file_path = os.path.join(INDEX_INPUT_DIRECTORY, file)
-        generate_features(file_path, INDEX_OUTPUT_DIRECTORY)
+        generate_features(file_path, INDEX_OUTPUT_DIRECTORY, True)
 
     for file in os.listdir(STOCK_INPUT_DIRECTORY):
         file_path = os.path.join(STOCK_INPUT_DIRECTORY, file)
-        generate_features(file_path, STOCK_OUTPUT_DIRECTORY)
+        generate_features(file_path, STOCK_OUTPUT_DIRECTORY, False)
 
     merge_files_based_on_date(INDEX_OUTPUT_DIRECTORY)

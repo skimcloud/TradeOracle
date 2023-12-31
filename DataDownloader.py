@@ -22,7 +22,7 @@ def download_ticker_data(tickers, start_date, end_date, folder):
 
 if __name__ == "__main__":
     indexes = ['SPY', '^RUT', 'GLD', '^VIX', '^VVIX', '^SKEW', '^TNX']
-    start_date = (datetime.datetime.now() - datetime.timedelta(days=365*5)).strftime('%Y-%m-%d')
+    start_date = (datetime.datetime.now() - datetime.timedelta(days=365*6)).strftime('%Y-%m-%d')
     end_date = datetime.datetime.now().strftime('%Y-%m-%d')
     download_ticker_data(indexes, start_date, end_date, INDEX_OUTPUT_DIRECTORY)
 
