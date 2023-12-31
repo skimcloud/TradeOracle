@@ -12,6 +12,7 @@ def process_trades(input_file, closed_output_file, open_output_file):
 
     # Process 'contract_details' to remove the 'C' value after the contract strike
     raw_trade_data['contract_details'] = raw_trade_data['contract_details'].str.replace('C', '')
+    raw_trade_data['contract_details'] = raw_trade_data['contract_details'].str.replace('P', '')
 
     # Prepare the dataframes for the output files
     closed_trades = pd.DataFrame(columns=['order_execution_datetime', 'trader', 'ticker', 'expiration', 
@@ -79,3 +80,14 @@ def process_trades(input_file, closed_output_file, open_output_file):
 
 # Run the process
 process_trades(INPUT_DIRECTORY, CLOSED_OUTPUT_DIRECTORY, OPEN_OUTPUT_DIRECTORY)
+processed_df = pd.read_csv(CLOSED_OUTPUT_DIRECTORY)
+
+# Convert the date columns to datetime objects
+order_date = pd.to_datetime(processed_df['order_execution_datetime'])
+processed_df['expiration'] = pd.to_datetime(processed_df['expiration'])
+processed_df['DTE'] = (processed_df['expiration'] - order_date).dt.days
+
+# Calculate DT_OPEX (Days to End of Expiration Month)
+last_day_of_expiration_month = processed_df['expiration'].apply(lambda x: x.replace(day=1) + pd.offsets.MonthEnd(1))
+processed_df['DT_OPEX'] = (last_day_of_expiration_month - processed_df['expiration']).dt.days
+processed_df.to_csv(CLOSED_OUTPUT_DIRECTORY, index=False)
