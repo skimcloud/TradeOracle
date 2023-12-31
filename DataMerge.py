@@ -6,7 +6,7 @@ from datetime import datetime
 TRADE_INPUT_DIRECTORY = 'processed_trade_data.csv'
 STOCK_INPUT_DIRECTORY = 'final_stock_data'
 AGGREGATED_INDEX_DATA_DIRECTORY = 'aggregated_index_data.csv'
-FINAL_OUTPUT_DIRECTORY = 'final_trade_data.csv'
+FINAL_OUTPUT_DIRECTORY = 'pre_final_dataset.csv'
 
 def read_trade_data(file_path):
     return pd.read_csv(file_path)
