@@ -88,8 +88,3 @@ processed_df = pd.read_csv(CLOSED_OUTPUT_DIRECTORY)
 order_date = pd.to_datetime(processed_df['order_execution_datetime'])
 processed_df['expiration'] = pd.to_datetime(processed_df['expiration'])
 processed_df['DTE'] = (processed_df['expiration'] - order_date).dt.days
-
-# Calculate DT_OPEX (Days to End of Expiration Month)
-last_day_of_expiration_month = processed_df['expiration'].apply(lambda x: x.replace(day=1) + pd.offsets.MonthEnd(1))
-processed_df['DT_OPEX'] = (last_day_of_expiration_month - processed_df['expiration']).dt.days
-processed_df.to_csv(CLOSED_OUTPUT_DIRECTORY, index=False)
