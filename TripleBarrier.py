@@ -13,7 +13,7 @@ orders = pd.read_csv('merged_dataset.csv')
 raw_close_values = []
 upper_barrier_values = []
 lower_barrier_values = []
-diff_upper_barrier_values = []
+diff_SR_values = []
 diff_lower_barrier_values = []
 
 # Iterate through each order in orders
@@ -46,32 +46,28 @@ for index, order in orders.iterrows():
             raw_close_values.append(current_stock_price)
             upper_barrier_values.append(upper_barrier)
             lower_barrier_values.append(lower_barrier)
-            diff_upper_barrier_values.append(upper_barrier - current_stock_price)
-            diff_lower_barrier_values.append(current_stock_price - lower_barrier)
+            diff_SR_values.append(upper_barrier - current_stock_price)
         else:
             # Append NaN values if no valid data found for the order
             raw_close_values.append(np.nan)
             upper_barrier_values.append(np.nan)
             lower_barrier_values.append(np.nan)
-            diff_upper_barrier_values.append(np.nan)
-            diff_lower_barrier_values.append(np.nan)
+            diff_SR_values.append(np.nan)
     else:
         # Append NaN values if no data file found for the order
         raw_close_values.append(np.nan)
         upper_barrier_values.append(np.nan)
         lower_barrier_values.append(np.nan)
-        diff_upper_barrier_values.append(np.nan)
-        diff_lower_barrier_values.append(np.nan)
+        diff_SR_values.append(np.nan)
 
 # Add the new columns to the 'orders' DataFrame
 orders['raw_close'] = raw_close_values
 orders['upper_barrier'] = upper_barrier_values
 orders['lower_barrier'] = lower_barrier_values
-orders['diff_upper_barrier'] = diff_upper_barrier_values
-orders['diff_lower_barrier'] = diff_lower_barrier_values
+orders['diff_SR'] = diff_SR_values
 
 # Drop rows with NaN values
 orders.dropna(inplace=True)
 
 # Output the modified CSV with new columns added and NaN rows dropped
-orders.to_csv('final_dataset_with_barriers.csv', index=False)
+orders.to_csv('final_dataset.csv', index=False)

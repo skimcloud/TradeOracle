@@ -1,11 +1,9 @@
-from nltk.sentiment import SentimentIntensityAnalyzer
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, accuracy_score
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
-import numpy as np
 
 # Load the dataset
 FILE_PATH = 'merged_dataset.csv'  # Replace with your dataset path
@@ -36,7 +34,7 @@ X_train = column_transformer.fit_transform(X_train)
 X_test = column_transformer.transform(X_test)
 
 # Training the RandomForestClassifier
-model = RandomForestClassifier(random_state=42)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
 # Predictions and performance evaluation
