@@ -14,7 +14,7 @@ def process_trades(input_file, closed_output_file, open_output_file):
     raw_trade_data['contract_details'] = raw_trade_data['contract_details'].str.replace('C', '')
     raw_trade_data['contract_details'] = raw_trade_data['contract_details'].str.replace('P', '')
 
-    # Prepare the dataframes for the output files
+    # Prepare the dataframes for the output filesDT
     closed_trades = pd.DataFrame(columns=['order_execution_datetime', 'trader', 'ticker', 'expiration', 
                                           'contract_details', 'entry_price', 'exit_price', 'profit', 'success'])
     open_trades = pd.DataFrame(columns=['order_execution_datetime', 'trader', 'ticker', 'expiration', 
@@ -45,7 +45,8 @@ def process_trades(input_file, closed_output_file, open_output_file):
                     'entry_price': row['contract_price'],
                     'exit_price': average_exit_price,
                     'profit': profit,
-                    'success': success
+                    'success': success,
+                    'comment': row['comment']
                 }])
                 closed_trades = pd.concat([closed_trades, new_row], ignore_index=True)
             else:
@@ -70,7 +71,8 @@ def process_trades(input_file, closed_output_file, open_output_file):
                         'entry_price': row['contract_price'],
                         'exit_price': 0,
                         'profit': profit,
-                        'success': success
+                        'success': success,
+                        'comment': row['comment']
                     }])
                     closed_trades = pd.concat([closed_trades, new_row], ignore_index=True)
 
