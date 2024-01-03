@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
@@ -39,4 +39,13 @@ model.fit(X_train, y_train)
 
 # Predictions and performance evaluation
 y_pred = model.predict(X_test)
+
+# Print the confusion matrix
+confusion = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(confusion)
+
+# Print classification report and accuracy
+print("Classification Report:")
 print(classification_report(y_test, y_pred))
+print("Accuracy:", accuracy_score(y_test, y_pred))
