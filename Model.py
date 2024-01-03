@@ -10,7 +10,7 @@ FILE_PATH = 'merged_dataset.csv'  # Replace with your dataset path
 data = pd.read_csv(FILE_PATH)
 
 # Dropping specified columns
-data = data.drop(columns=['comment', 'trader', 'exit_price', 'profit', 'entry_price', 'DT_OPEX'])
+data = data.drop(columns=['comment', 'trader', 'exit_price', 'comment', 'profit', 'entry_price', 'DT_OPEX'])
 
 # Encoding 'order_execution_datetime' and 'expiration' as ordinal values
 data['order_execution_datetime'] = pd.to_datetime(data['order_execution_datetime']).astype('int64')
